@@ -1,3 +1,3 @@
 export default function Login() {
-  return <div>Himanshu</div>;
+  return <div>Himanshu & SKG</div>;
 }
