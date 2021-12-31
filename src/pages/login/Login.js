@@ -1,3 +1,3 @@
 export default function Login() {
-  return <div>SKG</div>;
+  return <div>SKG updates</div>;
 }
