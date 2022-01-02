@@ -2,7 +2,8 @@ import { useState } from "react";
 // import "./Signup.css";
 import { useSignup } from "../../hooks/useSignup";
 import { Link } from "react-router-dom";
-
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner'
+import './Signup.css'
 export default function Signup() {
   const [referalCode, setReferalCode] = useState("");
   const [name, setName] = useState("");
@@ -45,11 +46,16 @@ export default function Signup() {
       termAndCondition
     );
   };
-
+ if(isPending){
+      return <LoadingSpinner />
+      }
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <h2>Distributor Registration</h2>
-      <label>
+    <>
+     <h2>Distributor Registration</h2>
+    <form onSubmit={handleSubmit}>
+     <div className='signup-form'>
+       <div className="right-content">
+     <label>
         <span>Referal code (optional):</span>
         <input
           type="text"
@@ -67,6 +73,7 @@ export default function Signup() {
           value={name}
         />
       </label>
+   
       <label>
         <span>Phone:</span>
         <input
@@ -85,6 +92,17 @@ export default function Signup() {
           value={email}
         />
       </label>
+       <label>
+        <span>PAN No:</span>
+        <input
+          type="text"
+          required
+          onChange={(e) => setPan(e.target.value)}
+          value={pan}
+        />
+      </label>
+</div>
+<div className="left-content">
       <label>
         <span>password:</span>
         <input
@@ -94,6 +112,7 @@ export default function Signup() {
           value={password}
         />
       </label>
+      
       <label>
         <span>Date of Birth (DOB):</span>
         <input
@@ -103,6 +122,7 @@ export default function Signup() {
           value={dob}
         />
       </label>
+ 
       <label>
         <span>Sub-Brokership Area:</span>
         <input
@@ -112,6 +132,7 @@ export default function Signup() {
           value={subBrokershipArea}
         />
       </label>
+ 
       <label>
         <span>Address:</span>
         <input
@@ -121,15 +142,9 @@ export default function Signup() {
           value={address}
         />
       </label>
-      <label>
-        <span>PAN No:</span>
-        <input
-          type="text"
-          required
-          onChange={(e) => setPan(e.target.value)}
-          value={pan}
-        />
-      </label>
+     
+  
+     
       <label>
         <span>Adhar No:</span>
         <input
@@ -137,7 +152,9 @@ export default function Signup() {
           required
           onChange={(e) => setAdhar(e.target.value)}
           value={adhar}
-        />
+        />   </label>
+       </div>
+         </div>
         <div>
           <input
             type="checkbox"
@@ -148,15 +165,14 @@ export default function Signup() {
             I agree with <Link to="/termandconditions">terms & conditions</Link>
           </span>
         </div>
-      </label>
+   
+       
+      
       {!isPending && <button className="btn">Sign up</button>}
       Already have an account? <Link to="/login">Login In here</Link>
-      {isPending && (
-        <button className="btn" disabled>
-          loading...
-        </button>
-      )}
       {error && <div className="error">{error}</div>}
-    </form>
+      
+   </form>
+    </>
   );
 }

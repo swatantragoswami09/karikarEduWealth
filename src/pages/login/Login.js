@@ -1,22 +1,32 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import "./Login.css";
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
+import Home from "../home/Home";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isPending } = useLogin();
-
+const history = useHistory();
+const { user } = useAuthContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
+   if(isPending){
+      return <LoadingSpinner />
+      }
+      if(user){
+     history.push('/')
+      }
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
       <label>
-        <span>email:</span>
+        <span>Email:</span>
         <input
           type="email"
           required
@@ -25,7 +35,7 @@ export default function Login() {
         />
       </label>
       <label>
-        <span>password:</span>
+        <span>Password:</span>
         <input
           type="password"
           required
@@ -35,15 +45,12 @@ export default function Login() {
       </label>
 
       {!isPending && <button className="btn">Login</button>}
-      {isPending && (
-        <button className="btn" disabled>
-          loading...
-        </button>
-      )}
+     
       <Link to="/forget" style={{ marginLeft: "10px" }}>
         forget password
       </Link>
       {error && <div className="error">{error}</div>}
+      {/* {!isPending && error && history.push('/')} */}
     </form>
   );
 }

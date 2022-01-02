@@ -31,7 +31,7 @@ export default function Navbar() {
             <>
               <li style={{ marginLeft: "10px", marginRight: "10px" }}>
                 {!isPending && (
-                  <button className="btn" onClick={logout}>
+                <button className="btn" onClick={logout}>
                     Logout
                   </button>
                 )}
