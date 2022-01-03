@@ -15,7 +15,10 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact>
+              {!user && <Redirect to="/signup" />}
+              {user && <Home />}
+            </Route>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact>
               {user && <Redirect to="/" />}
