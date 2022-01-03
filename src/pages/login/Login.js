@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link ,useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import "./Login.css";
-import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import Home from "../home/Home";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
@@ -10,18 +10,18 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isPending } = useLogin();
-const history = useHistory();
-const { user } = useAuthContext();
+  const history = useHistory();
+  const { user } = useAuthContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
-   if(isPending){
-      return <LoadingSpinner />
-      }
-      if(user){
-     history.push('/')
-      }
+  if (isPending) {
+    return <LoadingSpinner />;
+  }
+  if (user) {
+    history.push("/");
+  }
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
@@ -45,7 +45,7 @@ const { user } = useAuthContext();
       </label>
 
       {!isPending && <button className="btn">Login</button>}
-     
+
       <Link to="/forget" style={{ marginLeft: "10px" }}>
         forget password
       </Link>
