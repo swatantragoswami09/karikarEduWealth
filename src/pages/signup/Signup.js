@@ -1,10 +1,11 @@
 import { useState } from "react";
-// import "./Signup.css";
+import "./Signup.css";
 import { useSignup } from "../../hooks/useSignup";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import CommonSnackbar from "../../common/Snackbar";
 import "./Signup.css";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Signup() {
   const [referalCode, setReferalCode] = useState("");
@@ -18,6 +19,7 @@ export default function Signup() {
   const [pan, setPan] = useState("");
   const [adhar, setAdhar] = useState("");
   const [termAndCondition, setTermAndCondition] = useState(false);
+  const { user } = useAuthContext();
 
   const { signup, isPending, error } = useSignup();
 
@@ -53,19 +55,17 @@ export default function Signup() {
   if (isPending) {
     return <LoadingSpinner />;
   }
-  if(!isPending && !error){
-     snackbar = (
+  if (!isPending && !error) {
+    snackbar = (
       <CommonSnackbar message="User Login successfully" statusCode="200" />
     );
   }
-  if(!isPending && error){   
-    snackbar = (
-      <CommonSnackbar message={error} statusCode="400" />
-    );
+  if (!isPending && error) {
+    snackbar = <CommonSnackbar message={error} statusCode="400" />;
   }
   return (
     <div className="main-container">
-      <h2>Distributor Registration</h2>
+      <h1>Distributor Registration</h1>
       <form onSubmit={handleSubmit}>
         <div className="signup-form">
           <div className="right-content">
@@ -76,6 +76,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setReferalCode(e.target.value)}
                 value={referalCode}
+                style={{ width: "300px" }}
               />
             </label>
 
@@ -86,6 +87,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone}
+                style={{ width: "300px" }}
               />
             </label>
             <label>
@@ -95,6 +97,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                style={{ width: "300px" }}
               />
             </label>
             <label>
@@ -104,6 +107,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setSubBrokershipArea(e.target.value)}
                 value={subBrokershipArea}
+                style={{ width: "300px" }}
               />
             </label>
 
@@ -114,6 +118,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setPan(e.target.value)}
                 value={pan}
+                style={{ width: "300px" }}
               />
             </label>
           </div>
@@ -125,6 +130,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+                style={{ width: "300px" }}
               />
             </label>
 
@@ -136,6 +142,7 @@ export default function Signup() {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 placeholder="karikar@gmail.com"
+                style={{ width: "300px" }}
               />
             </label>
 
@@ -146,6 +153,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setDob(e.target.value)}
                 value={dob}
+                style={{ width: "300px" }}
               />
             </label>
 
@@ -156,6 +164,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setAddress(e.target.value)}
                 value={address}
+                style={{ width: "300px" }}
               />
             </label>
 
@@ -166,25 +175,31 @@ export default function Signup() {
                 required
                 onChange={(e) => setAdhar(e.target.value)}
                 value={adhar}
+                style={{ width: "300px" }}
               />{" "}
             </label>
           </div>
         </div>
         {/* <div> */}
-          
-
-          <span className="termsAndCondition">
-            <input
+        <span className="termsAndCondition">
+          <input
             type="checkbox"
             required
             onChange={() => setTermAndCondition(!termAndCondition)}
             value={termAndCondition}
+            style={{ cursor: "pointer" }}
           />
-          <p>  I agree with </p><Link to="/termandconditions">terms & conditions</Link>
-          </span>
+          <p> I agree with </p>
+          <Link to="/termandconditions">
+            <p style={{ marginLeft: "10px" }}> terms & conditions</p>
+          </Link>
+        </span>
         {/* </div> */}
         {!isPending && (
-          <button className="signup-btn" style={{ margin: "10px 0px" }}>
+          <button
+            className="signup-btn"
+            style={{ margin: "10px 0px", cursor: "pointer" }}
+          >
             Register
           </button>
         )}
@@ -192,7 +207,6 @@ export default function Signup() {
         Already have an account? <Link to="/login">Login In here</Link>
         {error && <div className="error">{error}</div>}
       </form>
-      {snackbar}
     </div>
   );
 }

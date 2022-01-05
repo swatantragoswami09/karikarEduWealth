@@ -28,6 +28,7 @@ export const AuthContextProvider = ({ children }) => {
         type: "AUTH_IS_READY",
         payload: user,
       });
+      // console.log(unsub);
       unsub();
     });
   }, []);

@@ -31,7 +31,7 @@ export const useSignup = () => {
         email,
         password
       );
-      console.log(res.user);
+      // console.log(res.user);
 
       if (!res) {
         throw new Error("Could not complete signup");
@@ -43,12 +43,12 @@ export const useSignup = () => {
       // const imgUrl = await img.ref.getDownloadURL();
 
       // add display name to user
-      // await res.user.updateProfile({ displayName, photoURL: imgUrl });
+      await res.user.updateProfile({ displayName: name });
 
       // create a user document
       await projectFirestore.collection("users").doc(res.user.uid).set({
         online: true,
-        name: name,
+        displayName: name,
         phone: phone,
         subBrokershipArea: subBrokershipArea,
         address: address,

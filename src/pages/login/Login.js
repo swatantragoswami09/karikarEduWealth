@@ -21,22 +21,20 @@ export default function Login() {
   if (isPending && !error) {
     return <LoadingSpinner />;
   }
-  if(!isPending && !error){
-     snackbar = (
+  if (!isPending && !error) {
+    snackbar = (
       <CommonSnackbar message="User Login successfully" statusCode="200" />
     );
   }
-  if(!isPending && error){   
-    snackbar = (
-      <CommonSnackbar message={error} statusCode="400" />
-    );
+  if (!isPending && error) {
+    snackbar = <CommonSnackbar message={error} statusCode="400" />;
   }
   if (user) {
     history.push("/");
   }
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
-      <h2>Login</h2>
+      <h1 style={{ textAlign: "center" }}>Login</h1>
       <label>
         <span>Email:</span>
         <input
@@ -44,6 +42,7 @@ export default function Login() {
           required
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          style={{ width: "450px" }}
         />
       </label>
       <label>
@@ -53,6 +52,7 @@ export default function Login() {
           required
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          style={{ width: "450px" }}
         />
       </label>
 
@@ -61,10 +61,17 @@ export default function Login() {
       <Link to="/forget" style={{ marginLeft: "10px" }}>
         forget password
       </Link>
-      {error && <div className="error">{error}</div>}
+      <span style={{ marginTop: "20px" }}>
+        Don't have an account{" "}
+        <Link to="/signup">
+          {" "}
+          <p style={{ marginLeft: "10px" }}>Register here</p>
+        </Link>
+      </span>
+      {error && snackbar}
       {/* {!isPending && error && history.push('/')} */}
 
-      {snackbar}
+      {/* {snackbar } */}
     </form>
   );
 }
