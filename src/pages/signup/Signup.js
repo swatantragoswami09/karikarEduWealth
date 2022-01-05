@@ -50,6 +50,7 @@ export default function Signup() {
   // if (isPending) {
   //   return <LoadingSpinner />;
   // }
+
   return (
     <div style={{ marginBottom: "50px" }}>
       <h2>Distributor Registration</h2>
@@ -122,13 +123,14 @@ export default function Signup() {
                 required
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                placeholder="karikar@gmail.com"
               />
             </label>
 
             <label>
               <span>Date of Birth (DOB):</span>
               <input
-                type="text"
+                type="date"
                 required
                 onChange={(e) => setDob(e.target.value)}
                 value={dob}
