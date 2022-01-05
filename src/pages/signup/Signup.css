@@ -1,10 +1,11 @@
 .signup-form {
   display: flex;
-  flex-direction: row;
-  border: 1px solid black;
+  /* flex-direction: row; */
+  /* border: 1px solid black; */
   width: fit-content;
   justify-content: center;
-  margin-left: 30%;
+  /* margin-left: 30%; */
+  margin: auto;
   text-align: left;
   background-color: black;
   color: white;
@@ -13,7 +14,43 @@
 .left-content {
   margin: 15px;
 }
+.main-container{
+  background-color:  black;
+  color: white;
+  /* width: 400px; */
+  border-radius: 8px;
+  bottom: 100px;
+  margin:auto;
+  width: 50%;
+/* border: 5px solid #FFFF00; */
+position: relative;
+bottom: 50px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
 
+.signup-btn{
+  width: 70%;
+   margin: 15px;
+   height: 50px;
+}
+
+span{
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  align-items: flex-start;
+ /* margin-left: 90px; */
+}
+
+.termsAndCondition{
+  margin-left: 110px;
+}
+input,p,Link{
+  margin: 0x 3px;
+    width: fit-content;
+  }
 /* .container{
  /* width: 500px;
     align-items: center;

@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../common/LoadingSpinner/LoadingSpinner";
 import { useHistory } from "react-router-dom";
 
 export default function Navbar() {

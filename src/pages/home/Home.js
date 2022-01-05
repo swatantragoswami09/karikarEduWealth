@@ -1,5 +1,5 @@
 import { useLogout } from "../../hooks/useLogout";
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 
 export default function Home() {
   const { logout, isPending } = useLogout();

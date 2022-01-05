@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Forget.css";
 import { useForget } from "../../hooks/useForget";
-import Loading from "../../LoadingSpinner/LoadingSpinner";
+import Loading from "../../common/LoadingSpinner/LoadingSpinner";
 
 function Forget() {
   const [email, setemail] = useState("");

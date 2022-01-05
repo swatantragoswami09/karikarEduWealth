@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import "./Login.css";
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import Home from "../home/Home";
+import CommonSnackbar from "../../common/Snackbar";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Login() {
@@ -16,8 +17,19 @@ export default function Login() {
     e.preventDefault();
     login(email, password);
   };
-  if (isPending) {
+  let snackbar;
+  if (isPending && !error) {
     return <LoadingSpinner />;
+  }
+  if(!isPending && !error){
+     snackbar = (
+      <CommonSnackbar message="User Login successfully" statusCode="200" />
+    );
+  }
+  if(!isPending && error){   
+    snackbar = (
+      <CommonSnackbar message={error} statusCode="400" />
+    );
   }
   if (user) {
     history.push("/");
@@ -51,6 +63,8 @@ export default function Login() {
       </Link>
       {error && <div className="error">{error}</div>}
       {/* {!isPending && error && history.push('/')} */}
+
+      {snackbar}
     </form>
   );
 }

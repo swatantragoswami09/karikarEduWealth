@@ -2,7 +2,8 @@ import { useState } from "react";
 // import "./Signup.css";
 import { useSignup } from "../../hooks/useSignup";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
+import CommonSnackbar from "../../common/Snackbar";
 import "./Signup.css";
 
 export default function Signup() {
@@ -47,11 +48,23 @@ export default function Signup() {
       termAndCondition
     );
   };
-  // if (isPending) {
-  //   return <LoadingSpinner />;
-  // }
+
+  let snackbar;
+  if (isPending) {
+    return <LoadingSpinner />;
+  }
+  if(!isPending && !error){
+     snackbar = (
+      <CommonSnackbar message="User Login successfully" statusCode="200" />
+    );
+  }
+  if(!isPending && error){   
+    snackbar = (
+      <CommonSnackbar message={error} statusCode="400" />
+    );
+  }
   return (
-    <div style={{ marginBottom: "50px" }}>
+    <div className="main-container">
       <h2>Distributor Registration</h2>
       <form onSubmit={handleSubmit}>
         <div className="signup-form">
@@ -156,28 +169,29 @@ export default function Signup() {
             </label>
           </div>
         </div>
-        <div>
-          <input
+        {/* <div> */}
+          
+
+          <span className="termsAndCondition">
+            <input
             type="checkbox"
             required
-            onChange={() => setTermAndCondition(true)}
+            onChange={() => setTermAndCondition(!termAndCondition)}
             value={termAndCondition}
           />
-
-          <span>
-            I agree with <Link to="/termandconditions">terms & conditions</Link>
+          <p>  I agree with </p><Link to="/termandconditions">terms & conditions</Link>
           </span>
-        </div>
+        {/* </div> */}
         {!isPending && (
-          <button className="btn" style={{ margin: "10px 0px" }}>
+          <button className="signup-btn" style={{ margin: "10px 0px" }}>
             Register
           </button>
         )}
-        {isPending && <LoadingSpinner />}
         <br />
         Already have an account? <Link to="/login">Login In here</Link>
         {error && <div className="error">{error}</div>}
       </form>
+      {snackbar}
     </div>
   );
 }
