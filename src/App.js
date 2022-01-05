@@ -3,6 +3,8 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Home from "./pages/home/Home";
 import Navbar from "./components/Navbar";
+import Dashboard from "./pages/dashboard/Dashboard";
+import TermAndCondition from "./pages/termandcondition/TermAndCondition";
 import "./App.css";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Forget from "./pages/forget/Forget";
@@ -16,8 +18,8 @@ function App() {
           <Navbar />
           <Switch>
             <Route path="/" exact>
-              {!user && <Redirect to="/signup" />}
-              {user && <Home />}
+              {!user && <Home />}
+              {user && <Dashboard />}
             </Route>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact>
@@ -28,6 +30,11 @@ function App() {
               {user && <Redirect to="/" />}
               {!user && <Forget />}
             </Route>
+            <Route
+              path="/termandconditions"
+              exact
+              component={TermAndCondition}
+            ></Route>
           </Switch>
         </BrowserRouter>
       )}
