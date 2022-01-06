@@ -1,4 +1,4 @@
 npm install react-router-dom@5
 npm install firebase@8.5
-npm install ngrok
+npm install ngrok (cmd==> ngrok http 3000)
 npm install @mui/material @emotion/react @emotion/styled
