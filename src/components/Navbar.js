@@ -4,6 +4,8 @@ import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import LoadingSpinner from "../common/LoadingSpinner/LoadingSpinner";
 import { useHistory } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import { red } from "@mui/material/colors";
 
 export default function Navbar() {
   const { logout, isPending } = useLogout();
@@ -20,7 +22,9 @@ export default function Navbar() {
       <nav>
         <ul>
           <li className="logo">
-            <Link to="/"> {/* <img src={Temple} alt="dojo logo" /> */}</Link>
+            <Link to="/">
+              <img src={logo} style={{ height: "60px", width: "60px" }} />
+            </Link>
             <span>
               <Link to="/"> The Karikar</Link>
             </span>

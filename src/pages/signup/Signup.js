@@ -6,6 +6,7 @@ import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import CommonSnackbar from "../../common/Snackbar";
 import "./Signup.css";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import logo from "../../assets/logo.svg";
 
 export default function Signup() {
   const [referalCode, setReferalCode] = useState("");
@@ -66,6 +67,7 @@ export default function Signup() {
   return (
     <div className="main-container">
       <h1>Distributor Registration</h1>
+      <img src={logo} style={{ height: "300px", width: "300px" }} />
       <form onSubmit={handleSubmit}>
         <div className="signup-form">
           <div className="right-content">

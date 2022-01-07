@@ -6,6 +6,7 @@ import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import Home from "../home/Home";
 import CommonSnackbar from "../../common/Snackbar";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import logo from "../../assets/logo.svg";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -35,6 +36,13 @@ export default function Login() {
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
       <h1 style={{ textAlign: "center" }}>Login</h1>
+      <img
+        src={logo}
+        style={{
+          height: "100px",
+          width: "100px",
+        }}
+      />
       <label>
         <span>Email:</span>
         <input
