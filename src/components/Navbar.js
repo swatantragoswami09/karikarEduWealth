@@ -23,7 +23,7 @@ export default function Navbar() {
         <ul>
           <li className="logo">
             <Link to="/">
-              <img src={logo} style={{ height: "70px", width: "60px" }} />
+              <img src={logo} style={{ height: "70px", width: "60px" ,position:"relative", left:"20px"}} />
             </Link>
             <span>
               <Link to="/"> The Karikar</Link>

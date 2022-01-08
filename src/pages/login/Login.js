@@ -35,16 +35,16 @@ export default function Login() {
   }
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
-      <h1 style={{ textAlign: "center" }}>Login</h1>
+     
       <img
       
         src={logo}
         style={{
-          height: "120px",
-          width: "100px",
-         marginLeft: "39%",
+          height: "150px",
+          width: "130px",
+         marginLeft: "35%",
         }}
-      />
+      /> <h1 style={{ textAlign: "center" }}>Login</h1>
       <label>
         <span>Email:</span>
         <input

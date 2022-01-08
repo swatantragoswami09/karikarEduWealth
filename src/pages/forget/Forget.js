@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Forget.css";
 import { useForget } from "../../hooks/useForget";
-import Loading from "../../common/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
+import CommonSnackbar from "../../common/Snackbar";
 
 function Forget() {
   const [email, setemail] = useState("");
@@ -11,6 +12,22 @@ function Forget() {
     console.log(email);
     forget(email);
   };
+
+  let snackbar;
+  
+  console.log('20',isPending,error)
+  if (!isPending && !error) {
+    console.log("hyy")
+    snackbar = (
+      <CommonSnackbar message="Check your mail" statusCode="200" />
+    );
+  }
+  if (!isPending && error) {
+    snackbar = <CommonSnackbar message={error} statusCode="400" />;
+  }
+  if (isPending && !error) {
+    return <LoadingSpinner />;
+  }
   return (
     <form onSubmit={handleSubmit} className={"login-form"}>
       <h2>Forget</h2>
@@ -23,9 +40,8 @@ function Forget() {
           value={email}
         />
       </label>
-
-      {!isPending && <button className="btn">send</button>}
-      {isPending && <Loading /> ? (
+      <button className="btn">send</button>
+      {/* {!isPending && <button className="btn">send</button>}
         <div
           style={{
             color: "darkgreen",
@@ -37,9 +53,10 @@ function Forget() {
         </div>
       ) : (
         ""
-      )}
+      ) */}
+      {snackbar}
 
-      {error && <p>{error}</p>}
+      {/* {error && <p>{error}</p>} */}
     </form>
   );
 }
